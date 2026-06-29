@@ -24,6 +24,21 @@ What’s included
 - Minimal HUD and loading screen
 - Public folders for `models` and `textures`
 
+Cloudflare Pages deployment
+- Build the app:
+
+```bash
+npm run build
+```
+
+- Deploy with Wrangler:
+
+```bash
+npm run deploy:cf
+```
+
+- Or connect the GitHub repo in Cloudflare Pages and set the build command to `npm run build` and the output directory to `dist`.
+
 Next recommended milestone
 - Implement collision geometry and robust collision detection
 - Add room interiors with optimized GLTF models (lazy loaded)
