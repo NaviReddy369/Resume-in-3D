@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "deploy:cf": "wrangler pages deploy dist --project-name=resume-in-3d"
+    "preview": "vite preview"
   },
   "dependencies": {
     "gsap": "^3.12.0",
@@ -26,7 +25,6 @@
     "postcss": "^8.4.0",
     "autoprefixer": "^10.4.0",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "wrangler": "^4.20.0"
+    "@types/react-dom": "^19.0.0"
   }
 }
