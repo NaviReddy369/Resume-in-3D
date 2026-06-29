@@ -2,8 +2,14 @@ import React from 'react'
 
 export default function LoadingScreen() {
   return (
-    <div style={{ position: 'fixed', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#000' }}>
-      <div style={{ color: '#fff', fontSize: 18 }}>Loading 3D Office...</div>
+    <div className="loading-screen">
+      <div className="loading-panel">
+        <span className="loading-kicker">Resume in 3D</span>
+        <h2>Composing the headquarters experience</h2>
+        <div className="loading-bar">
+          <span />
+        </div>
+      </div>
     </div>
   )
 }
