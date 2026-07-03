@@ -27,7 +27,7 @@ export default function ExperienceOverlay({
       <header className="topbar">
         <div className="brand-lockup">
           <span className="brand-kicker">Resume in 3D</span>
-          <span className="brand-title">Spatial Portfolio Headquarters</span>
+          <span className="brand-title">{active.label} Station</span>
         </div>
         <div className="topbar-meta">
           <span>Immersive narrative</span>
