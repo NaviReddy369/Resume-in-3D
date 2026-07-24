@@ -1,12 +1,10 @@
-import { links } from '@/data/links'
+import { OrgDock } from '@/components/chrome/OrgDock'
 
 export function SiteHeader() {
   return (
     <header className="site-header">
       <span className="brand-mark">NAVEEN GUDIMILLA</span>
-      <a className="header-resume" href={links.resume} download>
-        Resume
-      </a>
+      <OrgDock />
     </header>
   )
 }
