@@ -1,29 +1,37 @@
-import React, { Suspense, useState } from 'react'
-import ThreeCanvas from './components/ThreeCanvas'
-import LoadingScreen from './components/LoadingScreen'
-import ExperienceOverlay from './components/ExperienceOverlay'
-import { sections } from './data/experience'
+import { lazy, Suspense, type LazyExoticComponent, type ReactElement } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { HomeRoute } from './routes/HomeRoute'
+import NotFound from './routes/NotFound'
+import { CommandPalette } from './components/palette/CommandPalette'
+import { PaletteHintChip } from './components/palette/PaletteHintChip'
+import { RouteLoadingFallback } from './components/chrome/RouteLoadingFallback'
+
+const OrbitCaseStudy = lazy(() => import('./routes/OrbitCaseStudy'))
+const GnkContinuumCaseStudy = lazy(() => import('./routes/GnkContinuumCaseStudy'))
+const ThirdEyeFeelCaseStudy = lazy(() => import('./routes/ThirdEyeFeelCaseStudy'))
+const AlexCaseStudy = lazy(() => import('./routes/AlexCaseStudy'))
+
+function lazyRoute(Component: LazyExoticComponent<() => ReactElement>) {
+  return (
+    <Suspense fallback={<RouteLoadingFallback />}>
+      <Component />
+    </Suspense>
+  )
+}
 
 export default function App() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [hasEntered, setHasEntered] = useState(false)
-
-  const handleNext = () => setActiveIndex((current) => (current + 1) % sections.length)
-  const handlePrev = () => setActiveIndex((current) => (current - 1 + sections.length) % sections.length)
-
   return (
-    <div className="app-shell">
-      <Suspense fallback={<LoadingScreen />}>
-        <ThreeCanvas activeIndex={activeIndex} onSelectSection={setActiveIndex} />
-      </Suspense>
-      <ExperienceOverlay
-        activeIndex={activeIndex}
-        hasEntered={hasEntered}
-        onEnter={() => setHasEntered(true)}
-        onSelect={setActiveIndex}
-        onNext={handleNext}
-        onPrev={handlePrev}
-      />
-    </div>
+    <>
+      <CommandPalette />
+      <PaletteHintChip />
+      <Routes>
+        <Route path="/" element={<HomeRoute />} />
+        <Route path="/orbit" element={lazyRoute(OrbitCaseStudy)} />
+        <Route path="/products/gnk-continuum" element={lazyRoute(GnkContinuumCaseStudy)} />
+        <Route path="/products/3rd-eye-feel" element={lazyRoute(ThirdEyeFeelCaseStudy)} />
+        <Route path="/products/alex" element={lazyRoute(AlexCaseStudy)} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   )
 }
